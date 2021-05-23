@@ -1,0 +1,14 @@
+var cell = class { 
+  contents = {x} 0 
+};
+
+var celltwo = class { 
+  contents = {x} 2 , 
+  get = {x} x.contents 
+};
+
+var cellthree = class { 
+  get = {x} x.contents
+} extends celltwo,cell;
+
+(new cellthree).get
