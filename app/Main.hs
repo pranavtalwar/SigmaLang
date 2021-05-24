@@ -73,8 +73,8 @@ repl :: IO ()
 repl = do
         hSetBuffering stdin NoBuffering
         putStrLn "Select one of the following options:"
-        putStrLn "1. Parse code to Sigma"
-        putStrLn "2. Translate code to SLang"
+        putStrLn "1. Parse code to SLang"
+        putStrLn "2. Translate code to Sigma"
         putStrLn "3. Evaluate code"
         putStrLn "4. Quit REPL"
         putStr "Enter your choice: "
