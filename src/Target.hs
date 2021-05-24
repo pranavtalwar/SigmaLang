@@ -84,8 +84,9 @@ evaluateS (Let x a b) e mem = case evaluateS a e mem of
   Just (v, mem') -> evaluateS b ((x, v) : e) mem'
   _ -> error "Let Operation failed"
 evaluateS (Clone a) e mem = case evaluateS a e mem of
-    Just (ObjRef i, mem') -> let obj = mem' !! i in Just (ObjRef (length mem'), mem' ++ [obj])
-    _  -> error ("Type error: The expression: "  ++ show a ++ " does not evaluate to an object")
+    Just (ObjRef i, mem') -> Just (ObjRef (length mem'), mem' ++ [mem' !! i])
+    _  -> error ("Type error: The expression: "  ++ show a ++ 
+      " does not evaluate to an object")
 evaluateS (Lit a) e mem = Just (VInt a, mem)
 evaluateS (Boolean a) e mem = Just (VBool a, mem)                           
 evaluateS (Update a l (Method v m)) e mem =

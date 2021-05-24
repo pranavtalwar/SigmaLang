@@ -45,10 +45,11 @@ translate (SNew a) tc = case a of
         Just exp -> Call (translate exp tc) (Label "new")
         _ -> error "Could not find the class"
 
--- convert methods to self reference methods
+-- convert methods to for object instatiation
 convertToInneRefMethods :: [(Label, SMethod)] -> [(Label, SMethod)]
 convertToInneRefMethods xs = [(l, SMethod v (Apply (SCall (SVar (Var "z")) l) (SVar v))) | (l, SMethod v _) <- xs]
 
+-- convert methods to self reference methods
 convertToOuterRefMethods :: [(Label, SMethod)] -> [(Label, SMethod)]
 convertToOuterRefMethods xs = [(l, SMethod (Var "_") (Lam v e)) | (l, SMethod v e) <- xs]
 
